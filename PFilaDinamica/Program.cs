@@ -4,16 +4,37 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        int opc;
         FilaPessoa FilaPessoa = new FilaPessoa();
-        //Pessoa p1 = new ("Odair");
-        //filaPessoa.push(p1);
-        FilaPessoa.push(new Pessoa("Odair"));
-        FilaPessoa.push(new Pessoa("Alexa"));
-        FilaPessoa.push(new Pessoa("Tio Paulo"));
-        FilaPessoa.print();
-        FilaPessoa.pop();
-        FilaPessoa.pop();
-        FilaPessoa.pop();
+        do
+        {
+            Console.Clear();
+            Console.WriteLine("1 - Inserir\n2 - Remover primeira pessoa\n3 - Imprimir Fila\n4 - Procurar na Fila\n0 - Sair");
+            opc = int.Parse(Console.ReadLine());
+            switch (opc)
+            {
+                case 1:
+                    FilaPessoa.push(InserirPessoa());
+                    break;
+                case 2:
+                    FilaPessoa.pop();
+                    break;
+                case 3:
+                    FilaPessoa.print();
+                    break;
+                case 4:
+                    Console.WriteLine("Informe a pessoa que deseja procurar:");
+                    FilaPessoa.printEspecifico(Console.ReadLine());
+                    break;
+                default:
+                    break;
+            }
+        } while (opc != 0);
+    }
+    static Pessoa InserirPessoa()
+    {
+        Console.WriteLine("Informe o nome:");
+        Pessoa pessoatemp = new Pessoa(Console.ReadLine());
+        return pessoatemp;
     }
 }

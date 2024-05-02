@@ -28,7 +28,7 @@ namespace PFilaDinamica
         }
         public string print()
         {
-            return "\nPessoa: " + nome;
+            return nome;
         }
 
     }

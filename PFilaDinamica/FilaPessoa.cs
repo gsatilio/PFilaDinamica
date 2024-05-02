@@ -11,6 +11,7 @@ namespace PFilaDinamica
     {
         Pessoa? head;
         Pessoa? tail;
+        int contador;
 
         public FilaPessoa()
         {
@@ -29,6 +30,7 @@ namespace PFilaDinamica
                 this.tail.setNext(aux);
                 this.tail = aux;
             }
+            contador++;
         }
         internal bool isEmpty()
         {
@@ -46,6 +48,7 @@ namespace PFilaDinamica
                 {
                     this.head = this.head.getNext();
                 }
+                contador--;
             }
         }
         public void print()
@@ -61,10 +64,32 @@ namespace PFilaDinamica
             {
                 do
                 {
-                    Console.WriteLine(aux.print());
+                    Console.WriteLine("Pessoa: " + aux.print());
                     aux = aux.getNext();
                 } while (aux != null);
-                Console.WriteLine("Pressione qualquer tecla para continuar...");
+                Console.WriteLine($"Existem {contador} pessoas na fila.Pressione qualquer tecla para continuar...");
+                Console.ReadKey();
+            }
+        }
+        public void printEspecifico(string nome)
+        {
+            Pessoa aux = head;
+            int contador_aux = 0;
+            bool encontrou = false;
+            do
+            {
+                contador_aux++;
+                if (aux.print() == nome)
+                {
+                    encontrou = true;
+                    Console.WriteLine($"Pessoa encontrada! Posição: {contador_aux} - " + aux.print());
+                    Console.ReadKey();
+                }
+                aux = aux.getNext();
+            } while (aux != null);
+            if (!encontrou)
+            {
+                Console.WriteLine("Não localizamos essa pessoa.");
                 Console.ReadKey();
             }
         }
